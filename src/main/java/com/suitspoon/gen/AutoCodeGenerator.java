@@ -1,5 +1,6 @@
 package com.suitspoon.gen;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
 import com.baomidou.mybatisplus.generator.config.GlobalConfig;
@@ -18,8 +19,14 @@ public class AutoCodeGenerator {
         String projectPath = System.getProperty("user.dir");
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setAuthor("suxin");
+        gc.setIdType(IdType.ASSIGN_ID);
         gc.setOpen(false);
-        // gc.setSwagger2(true); 实体属性 Swagger2 注解
+        gc.setBaseResultMap(true);
+        gc.setBaseColumnList(true);
+        gc.setMapperName("%sDAO");
+        gc.setServiceName("%sManager");
+        gc.setServiceImplName("%sManagerImpl");
+        gc.setSwagger2(true); // 实体属性 Swagger2 注解
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
@@ -35,6 +42,10 @@ public class AutoCodeGenerator {
         PackageConfig pc = new PackageConfig();
         pc.setModuleName("demo1");
         pc.setParent("com.suitspoon");
+        pc.setService("manager");
+        pc.setServiceImpl("manager.Impl");
+        pc.setMapper("dao");
+        pc.setXml("mapper");
         mpg.setPackageInfo(pc);
 
         // 策略配置
